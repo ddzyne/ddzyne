@@ -1,0 +1,51 @@
+.form {
+	label {
+		font-family: $header-font-family;
+		.white & {
+			color:$dark-gray;
+		}
+	}
+	input[type="text"], input[type="email"] {
+		@include breakpoint(medium) {
+			width:60%;
+		}
+	}
+	input[type="submit"] {
+		font-family: $header-font-family;
+		@extend .button;
+		@extend .large;
+		.pink & {
+			@include button-style($background: $black, $background-hover:lighten($black,10%), $color:$white);
+		}
+	}
+	position:relative;
+	.sending {
+		position: absolute;
+		top:0;
+		left:-.1rem;
+		right: 0;
+		bottom: 0;
+		background: rgba($black,.5);
+		z-index: 2;
+		.white & {
+			background: rgba($white,.5);
+		}
+		.pink & {
+			background: rgba($primary-color,.5);
+		}
+	}
+	.invalid {
+		border-color:$alert-color;
+		&:focus {
+			border-color:$warning-color;
+		}
+	}
+	.valid {
+		border-color:$success-color;
+	}
+	.error {
+		border:3px solid $alert-color;
+		padding:1rem;
+		border-radius:$global-radius;
+	}
+}

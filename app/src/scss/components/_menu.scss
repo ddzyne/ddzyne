@@ -1,0 +1,82 @@
+.wrapper.menu {
+	@include xy-grid-container;
+	@include xy-grid;
+	.hidden {
+		@include breakpoint(medium down) {
+			max-height: 0;
+			margin:0;
+			visibility: hidden;
+		}
+		@include breakpoint(large) {
+			visibility: hidden;
+			opacity: 0;
+		}
+	}
+	nav {
+		text-align: center;
+		font-family: $header-font-family;
+		display: flex;
+		align-items:center;
+		justify-content: center;
+		@include xy-cell();
+		@include xy-gutters($gutter-position: left right);
+		@include breakpoint(large) {
+			text-align: right;
+			font-size: 1.3rem;
+			@include xy-cell(5);
+			justify-content: flex-end;
+		}
+		a {
+			color:$white;
+			display: inline-block;
+			margin-right:2rem;
+			transition: color .3s ease;
+			&:last-of-type {
+				margin-right:0;
+			}
+			&:hover, &.active {
+				color:$primary-color;
+			}
+			.white & {
+				color:$black;
+				&:hover, &.active {
+					color:$primary-color;
+				}
+			}
+			.pink & {
+				color:$white;
+				&:hover, &.active {
+					color:$black;
+				}
+			}
+		}
+	}
+	#logo-header {
+		text-align: center;
+		@include xy-cell();
+		@include xy-gutters($gutter-position: left right);
+		@include breakpoint(large) {
+			@include xy-cell(7);
+			text-align: left;
+		}
+		transition: opacity .3s ease;
+		a, h1 {
+			display: inline-block;
+			font-size: 1.3rem;
+			font-family: 'AG', sans-serif;
+			text-transform: lowercase;
+			@include breakpoint(large) {
+				font-size: 1.8rem;
+			}
+		}
+		h1 {
+			padding:0 .3rem;
+			margin-bottom: 0;
+		}
+		.pink & {
+			a {
+				color:$black;
+			}
+		}
+	}
+}

@@ -1,0 +1,118 @@
+.bubble {
+  background:#2f2f2f;
+  border-radius:1rem;
+  padding:1.5rem 2rem 1rem 2rem;
+  position:relative;
+  .pink & {
+    background:lighten($primary-color, 10%);
+    small {
+      color:darken($light-gray,10%);
+    }
+    h6 {
+      color:darken($light-gray,10%);
+    }
+  }
+  .white & {
+    background:$light-gray;
+  }
+  &:after {
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+  }
+  h6 {
+    margin-bottom: .2rem;
+    color:lighten(#2f2f2f, 40%);
+  }
+  &:after {
+    bottom:-1.3rem;
+    left:50%;
+    margin-left:-1rem;
+    border-width: 1.5rem 1rem 0 1rem;
+    border-color: #2f2f2f transparent transparent transparent;
+    .white & {
+      border-color: $light-gray transparent transparent transparent;
+    }
+    .pink & {
+      border-color: lighten($primary-color, 10%) transparent transparent transparent;
+    }
+  } 
+  @include breakpoint(large up) {
+    &:after {
+      left:auto;
+      right:-1.3rem;
+      top:50%;
+      margin-top: -1.5rem;
+      border-width: 1rem 0 1rem 1.5rem;
+      border-color: transparent transparent transparent #2f2f2f;
+      .white & {
+        border-color: transparent transparent transparent $light-gray;
+      }
+      .pink & {
+        border-color:  transparent transparent transparent lighten($primary-color, 10%);
+      }
+      .large-order-2 & {
+        left: -1.3rem;
+        margin-left: 0;
+        top: 50%;
+        margin-top: -1.5rem;
+        border-width: 1rem 1.5rem 1rem 0;
+        border-color: transparent #2f2f2f transparent transparent;
+      }
+    }
+  }
+}
+
+.rounded {
+  img {
+    border-radius:1rem;
+    border:2px solid $medium-gray;
+    transition: border .3s ease;
+    width: 100%;
+    height: auto;
+    &.multi-2 {
+      float:left;
+      max-width: 48%;
+      &:last-of-type {
+        float: right;
+      }
+    }
+  }
+  a {
+    display: block;
+    width: 100%;
+    &:hover {
+      img {
+        border-color:$primary-color;
+        body.pink & {
+          border-color:$black;
+        }
+      }
+    }
+  }
+  p.image {
+    margin-bottom: 0;
+  }
+}
+
+.tags {
+  span {
+    &:after {
+      content: ', ';
+    }
+    &:last-of-type {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
+
+.social {
+  a {
+    display: inline-block;
+    margin-right: .3rem;
+  }
+}

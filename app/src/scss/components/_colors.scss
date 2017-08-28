@@ -1,0 +1,25 @@
+#root > div {
+  transition: background .4s ease;
+  &.black {
+
+  }
+  &.white {
+    background:$white;
+    color:$black;
+  }
+  &.pink {
+    background: $primary-color;
+    .middle {
+      a {
+      	color:$black;
+      	&:hover {
+      		color:$primary-color;
+      	}
+      }
+    }
+  }
+}
+
+a {
+  transition:color .3s ease;
+}

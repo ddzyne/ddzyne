@@ -1,0 +1,1 @@
+export const WP_URL = 'http://www.ddzyne.nl/wp-json';

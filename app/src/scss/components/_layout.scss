@@ -1,0 +1,49 @@
+#root {
+	overflow:hidden;
+	> div {
+		min-height: 100vh;
+	}
+}
+
+.wrapper {
+	width:100%;
+	overflow:visible;
+	@include xy-grid-container;
+	@include xy-grid;
+	.item {
+		@include xy-gutters($gutter-position: left right bottom top);
+		@include xy-cell(12);
+		@include breakpoint(large) {
+		    @include xy-cell(6);
+		}
+	}
+	&.home {
+		width:100%;
+		.item {
+			align-items:center;
+			display: flex;
+		}
+	}
+	&.middle {
+	}
+}
+
+.footer {
+	overflow:hidden;
+	.item {
+		text-align: center;
+		@include xy-cell(12);
+		color:$dark-gray;
+		h3 {
+			border-top:1px solid $dark-gray;
+			padding-top:1rem;
+		}
+		.pink & {
+			color:$white;
+			h3 {
+				border-color:$white;
+			}
+		}
+	}
+	padding:5vh 0;
+}
