@@ -117,6 +117,7 @@
 	background:$black;
 	display:flex;
 	align-items:center;
+	z-index:4;
 	.pink & {
 		background:$primary-color;
 	}

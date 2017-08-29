@@ -9,6 +9,7 @@ export const RECEIVE_POST_TAGS = 'RECEIVE_POST_TAGS'
 export const LOADING_PAGES = 'LOADING_PAGES'
 export const LOADING_MENU = 'LOADING_MENU'
 export const LOADING_CUSTOM_POSTS = 'LOADING_CUSTOM_POSTS'
+export const LOADING_POST_TAGS = 'LOADING_POST_TAGS'
 
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 
@@ -45,6 +46,14 @@ function loadingMenu(bool) {
 function loadingCustomPosts(bool) {
     return {
         type: LOADING_CUSTOM_POSTS,
+        payload: {
+            loading: bool
+        }
+    }
+}
+function loadingPostTags(bool) {
+    return {
+        type: LOADING_POST_TAGS,
         payload: {
             loading: bool
         }
@@ -140,9 +149,10 @@ function receiveCustomPosts(dispatch, postType, posts) {
 export function fetchPostTagsIfNeeded() {
     return function(dispatch, getState) {
         if (shouldFetchPostTags(getState())) {
+            dispatch(loadingPostTags(true))
             return fetch(WP_URL + '/wp/v2/tags?per_page=100')
                 .then(response => response.json())
-                .then(tags => dispatch(receivePostTags(tags)))
+                .then(tags => dispatch(receivePostTags(dispatch, tags)))
         }
     }
 }
@@ -152,7 +162,8 @@ function shouldFetchPostTags(state) {
     return !tags.hasOwnProperty('tags');
 }
 
-function receivePostTags(tags) {
+function receivePostTags(dispatch, tags) {
+    dispatch(loadingPostTags(false))
     return {
         type: RECEIVE_POST_TAGS,
         payload: {

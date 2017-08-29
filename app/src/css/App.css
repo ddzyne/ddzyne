@@ -8380,6 +8380,9 @@ a {
         margin-right: 0.78125rem;
         margin-left: 0.78125rem;
         text-align: left; } }
+    .wrapper.menu #logo-header a {
+      position: relative;
+      z-index: 2; }
     .wrapper.menu #logo-header a, .wrapper.menu #logo-header h1 {
       display: inline-block;
       font-size: 1.3rem;
@@ -8658,7 +8661,8 @@ a {
   bottom: 0;
   background: #0a0a0a;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  z-index: 4; }
   .pink .loader-wrap {
     background: #ec4ca1; }
   .white .loader-wrap {

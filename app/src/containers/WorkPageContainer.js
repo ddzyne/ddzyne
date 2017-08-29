@@ -11,9 +11,12 @@ import { DEFAULT_POST_TAGS } from '../reducers/posttags'
 class WorkPageContainer extends Component {
     componentWillMount() {
         const { fetchPageIfNeeded, fetchCustomPostsIfNeeded, fetchPostTagsIfNeeded, pageName } = this.props
-        fetchPageIfNeeded(pageName)
         fetchCustomPostsIfNeeded('work')
         fetchPostTagsIfNeeded()
+        fetchPageIfNeeded(pageName)
+    }
+    shouldComponentUpdate(nextProps) {
+        return nextProps.customposts[0].hasOwnProperty('id') && nextProps.page.hasOwnProperty('id') && nextProps.posttags[0].hasOwnProperty('link') ? true : false
     }
     render() {
         const { customposts, posttags, page } = this.props

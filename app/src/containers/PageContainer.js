@@ -15,7 +15,7 @@ class PageContainer extends Component {
         return ( this.props.pageName !== nextProps.pageName || this.props.page.title.rendered !== nextProps.page.title.rendered ) && true
     }
     render() {
-        const { page, pageName } = this.props
+        const { page } = this.props
         return (
             page.hasOwnProperty('id') ?
             <div>

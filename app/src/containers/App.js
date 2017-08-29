@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Route, Switch } from 'react-router'
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet"
 import MenuContainer from './MenuContainer'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
@@ -28,8 +28,12 @@ class App extends Component {
 		document.getElementById("content").style.minHeight = nodeHt + 'px'
 	}
     render() {
-        const { menu, loadingPages, loadingMenu, loadingCustomPosts, background, location } = this.props
+        const { menu, loadingPages, loadingMenu, loadingCustomPosts, loadingPostTags, background, location } = this.props
+        //no separate loading anims for now
+        const loading = loadingPages || loadingMenu || loadingCustomPosts || loadingPostTags
+
         const currentKey = location.pathname.split('/')[1] || '/'
+
         return (
             <div className={background}>
 
@@ -44,7 +48,7 @@ class App extends Component {
                         transitionEnterTimeout={1000} 
                         transitionLeaveTimeout={1000}
                         overflowHidden={false}>
-		            	<Switch location={location} key={currentKey}>
+		            	<Switch key={currentKey}>
 		            		<Route path="/" exact component={Home}/>
 			                {menu.map( (item, i) =>  
 			                	<Route 
@@ -64,13 +68,15 @@ class App extends Component {
                         overflowHidden={false}>
 	           		<Footer key={currentKey}/>
 	           	</ReactCSSTransitionReplace>
-            	<TransitionGroup>
-            		{ ( loadingPages || loadingMenu || loadingCustomPosts ) &&
+            	
+                <TransitionGroup>
+            		{ loading &&
 	            	<CSSTransition timeout={1100} classNames="fade" unmountOnExit={true}>
 	            		<PacmanLoader/>
 	            	</CSSTransition>
 		            }
 	           </TransitionGroup>
+
             </div>
 		)
     }
@@ -84,6 +90,7 @@ function mapStateToProps(state) {
         loadingPages: state.loader.loadingPages,
         loadingMenu: state.loader.loadingMenu,
         loadingCustomPosts: state.loader.loadingCustomPosts,
+        loadingPostTags: state.loader.loadingPostTags,
         background: state.background.color,
         location: location,
     }
