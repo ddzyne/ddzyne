@@ -48,7 +48,7 @@ class App extends Component {
                         transitionEnterTimeout={1000} 
                         transitionLeaveTimeout={1000}
                         overflowHidden={false}>
-		            	<Switch key={currentKey}>
+		            	<Switch key={currentKey} location={location}>
 		            		<Route path="/" exact component={Home}/>
 			                {menu.map( (item, i) =>  
 			                	<Route 
