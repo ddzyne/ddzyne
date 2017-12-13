@@ -39,6 +39,7 @@ class App extends Component {
 
                 <Helmet>
                     <title>Ddzyne - Bespoke webdevelopment & design</title>
+                    <meta name="description" content="Emergentie uit programmeren en ontwerpen. Datavisualisaties, Webapplicaties, WordPress websites." />
                 </Helmet>
 
             	<MenuContainer menu={menu} />

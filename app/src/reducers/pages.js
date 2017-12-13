@@ -9,6 +9,9 @@ let defaultPage = {
     title: {
         rendered: ''
     },
+    excerpt: {
+        rendered: ''
+    },
     cmb2: {
         column_metabox: {
             column_content: ''

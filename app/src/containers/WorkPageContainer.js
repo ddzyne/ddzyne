@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Helmet} from "react-helmet"
 import WorkColContent from '../components/WorkColContent'
+import Title from '../components/Title'
 import { connect } from 'react-redux'
 import { fetchPageIfNeeded, fetchCustomPostsIfNeeded, fetchPostTagsIfNeeded } from '../actions'
 import { DEFAULT_PAGE } from '../reducers/pages'
@@ -22,9 +23,7 @@ class WorkPageContainer extends Component {
         const { customposts, posttags, page } = this.props
         return (
             <div>
-                <Helmet>
-                    <title>Ddzyne - Bespoke webdevelopment & design - {page.title.rendered}</title>
-                </Helmet>
+                <Title title={page.title.rendered} meta={page.excerpt.rendered} />
                 {customposts.map( (post, i) => <WorkColContent key={i} post={post} number={i} posttags={posttags} />)}
             </div>
         )

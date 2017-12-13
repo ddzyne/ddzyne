@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Helmet} from "react-helmet"
 import TwoColContent from '../components/TwoColContent'
+import Title from '../components/Title'
 import { connect } from 'react-redux'
 import { fetchPageIfNeeded } from '../actions'
 import { DEFAULT_PAGE } from '../reducers/pages'
@@ -19,9 +20,7 @@ class PageContainer extends Component {
         return (
             page.hasOwnProperty('id') ?
             <div>
-                <Helmet>
-                    <title>Ddzyne - Bespoke webdevelopment & design - {page.title.rendered}</title>
-                </Helmet>
+                <Title title={page.title.rendered} meta={page.excerpt.rendered} />
                 <TwoColContent page={page} />
             </div>
             :
