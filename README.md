@@ -10,6 +10,4 @@ Tools used:
 - Contact Form 7 for sending a form via the REST API
 
 Stuff todo:
-- Prevent flash of content at initial load
-- Meta tags
-- Etc.
+- Nothing for now

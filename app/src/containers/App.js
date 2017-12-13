@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import cn from 'classnames'
 import { Route, Switch } from 'react-router'
 import { Helmet } from "react-helmet"
 import MenuContainer from './MenuContainer'
@@ -34,8 +34,10 @@ class App extends Component {
 
         const currentKey = location.pathname.split('/')[1] || '/'
 
+        const wrapperClass = cn('main-wrapper', background, {loading: loading})
+
         return (
-            <div className={background}>
+            <div className={wrapperClass}>
 
                 <Helmet>
                     <title>Ddzyne - Bespoke webdevelopment & design</title>

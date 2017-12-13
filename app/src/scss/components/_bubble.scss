@@ -60,6 +60,12 @@
         margin-top: -1.5rem;
         border-width: 1rem 1.5rem 1rem 0;
         border-color: transparent #2f2f2f transparent transparent;
+        .white & {
+          border-color: transparent  $light-gray transparent transparent;
+        }
+        .pink & {
+          border-color: transparent lighten($primary-color, 10%) transparent transparent;
+        }
       }
     }
   }

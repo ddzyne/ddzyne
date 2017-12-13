@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Helmet} from "react-helmet"
 import WorkColContent from '../components/WorkColContent'
 import Title from '../components/Title'
 import { connect } from 'react-redux'

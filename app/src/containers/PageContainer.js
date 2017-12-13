@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Helmet} from "react-helmet"
 import TwoColContent from '../components/TwoColContent'
 import Title from '../components/Title'
 import { connect } from 'react-redux'

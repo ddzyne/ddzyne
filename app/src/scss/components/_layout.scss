@@ -1,7 +1,17 @@
 #root {
 	overflow:hidden;
-	> div {
+	.main-wrapper {
 		min-height: 100vh;
+		//prevent flash of content
+		.wrapper.menu, .middle, .footer {
+			transition: opacity .3s ease;
+		}
+		&.loading {
+			.wrapper.menu, .middle, .footer {
+				opacity: 0;
+				// transition: opacity .3s ease .3s;
+			}
+		}
 	}
 }
 
