@@ -66,8 +66,8 @@ class App extends Component {
 	            </div>
 	            <ReactCSSTransitionReplace 
             			transitionName="slideDown" 
-                        transitionEnterTimeout={1000} 
-                        transitionLeaveTimeout={1000}
+                        transitionEnterTimeout={1200} 
+                        transitionLeaveTimeout={500}
                         overflowHidden={false}>
 	           		<Footer key={currentKey}/>
 	           	</ReactCSSTransitionReplace>
