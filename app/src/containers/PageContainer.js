@@ -16,6 +16,8 @@ class PageContainer extends Component {
     }
     render() {
         const { page } = this.props
+        console.log(this.props)
+
         return (
             page.hasOwnProperty('id') ?
             <div>
@@ -29,6 +31,7 @@ class PageContainer extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+    console.log(state)
     const pageName = ownProps.pageName
     const page = state.pages[pageName] || state.pages[DEFAULT_PAGE]
     return {

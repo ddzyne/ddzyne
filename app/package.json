@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://www.ddzyne.nl/wp-content/themes/ddzyne-rest/build",
+  "homepage": "https://www.ddzyne.nl/wp-content/themes/ddzyne-rest/build",
   "dependencies": {
     "@team-griffin/react-router-connected": "^0.1.0",
     "classnames": "^2.2.5",
