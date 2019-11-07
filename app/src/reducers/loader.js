@@ -1,10 +1,11 @@
-import { LOADING_PAGES, LOADING_MENU, LOADING_CUSTOM_POSTS, LOADING_POST_TAGS } from '../actions'
+import { LOADING_PAGES, LOADING_MENU, LOADING_CUSTOM_POSTS, LOADING_POST_TAGS, LOADING_MORE_CUSTOM_POSTS } from '../actions'
 
 let defaultState = {
     loadingPages: false,
     loadingMenu: true,
     loadingCustomPosts: false,
     loadingPostTags: false,
+    loadingMoreCustomPosts: false,
 }
 
 export default function loader(state = defaultState, action) {
@@ -27,6 +28,11 @@ export default function loader(state = defaultState, action) {
         case LOADING_POST_TAGS:
             return Object.assign({}, state, {
                 loadingPostTags: action.payload.loading
+            })
+
+        case LOADING_MORE_CUSTOM_POSTS:
+            return Object.assign({}, state, {
+                loadingMoreCustomPosts: action.payload.loading
             })
 
         default:

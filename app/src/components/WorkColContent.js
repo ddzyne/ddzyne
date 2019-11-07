@@ -1,23 +1,40 @@
 import React, { Component } from 'react'
 import cn from 'classnames'
 import _ from 'lodash'
+import VisibilitySensor from 'react-visibility-sensor'
 
 // Dumb component
 export default class WorkColContent extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            visible: false,
+        }
+        this.onChangeVisibility = this.onChangeVisibility.bind(this)
+    }
     createMarkup(html) {
         return {
             __html: html
         }
     }
 
+    onChangeVisibility (isVisible) {
+        this.setState({visible: isVisible});
+    }
+
     render() {
         const { post, number, posttags } = this.props
 
         return (
-            <div className="wrapper">
-				<Bubble post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-1 leftside' : 'large-order-2 rightside'} posttags={posttags}/>	
-				<Images post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-2 rightside' : 'large-order-1 leftside'}/>  
-            </div>
+            <VisibilitySensor 
+                onChange={this.onChangeVisibility} 
+                active={!this.state.visible}
+                partialVisibility={true}>
+                <div className={`wrapper ${this.state.visible ? 'animate-me' : ''}`}>
+    				<Bubble post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-1 leftside' : 'large-order-2 rightside'} posttags={posttags}/>	
+    				<Images post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-2 rightside' : 'large-order-1 leftside'}/>  
+                </div>
+            </VisibilitySensor>
         );
     }
 }

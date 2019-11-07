@@ -10,6 +10,7 @@ export const LOADING_PAGES = 'LOADING_PAGES'
 export const LOADING_MENU = 'LOADING_MENU'
 export const LOADING_CUSTOM_POSTS = 'LOADING_CUSTOM_POSTS'
 export const LOADING_POST_TAGS = 'LOADING_POST_TAGS'
+export const LOADING_MORE_CUSTOM_POSTS = 'LOADING_MORE_CUSTOM_POSTS'
 
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 
@@ -51,6 +52,16 @@ function loadingCustomPosts(bool) {
         }
     }
 }
+
+export function setLoadMore(bool) {
+    return {
+        type: LOADING_MORE_CUSTOM_POSTS,
+        payload: {
+            loading: bool
+        }
+    }
+}
+
 function loadingPostTags(bool) {
     return {
         type: LOADING_POST_TAGS,
@@ -116,29 +127,33 @@ function receiveMenuItems(dispatch, menuData) {
 }
 
 //custom posts, get them all for 'work' posttype, as these need to be displayed on one page
-export function fetchCustomPostsIfNeeded(postType) {
+export function fetchCustomPostsIfNeeded(postType, page) {
     return function(dispatch, getState) {
-        if (shouldFetchCustomPosts(getState(), postType)) {
-            dispatch(loadingCustomPosts(true))
-            return fetch(WP_URL + '/wp/v2/' + postType)
+        if (shouldFetchCustomPosts(getState(), postType, page)) {
+            page < 2 && dispatch(loadingCustomPosts(true))
+            return fetch(WP_URL + '/wp/v2/' + postType + '?page=' + page)
                 .then(response => response.json())
-                .then(posts => dispatch(receiveCustomPosts(dispatch, postType, posts)))
+                .then(posts => dispatch(receiveCustomPosts(dispatch, postType, posts, page)))
         }
     }
 }
 
-function shouldFetchCustomPosts(state, postType) {
+function shouldFetchCustomPosts(state, postType, page) {
     const posts = state.customposts;
-    return !posts.hasOwnProperty(postType);
+    return ( !posts.hasOwnProperty(postType) || posts[postType].page !== page ) || 
+           ( posts.hasOwnProperty(postType) && !posts.gotAll );
 }
 
-function receiveCustomPosts(dispatch, postType, posts) {
+function receiveCustomPosts(dispatch, postType, posts, page) {
     dispatch(loadingCustomPosts(false))
+    dispatch(setLoadMore(false))
     return {
         type: RECEIVE_CUSTOM_POSTS,
         payload: {
             postType: postType,
-            posts: posts
+            posts: posts,
+            page: page,
+            gotAll: posts.length < 10 || ( posts.hasOwnProperty('code') && posts.code === 'rest_post_invalid_page_number')
         }
     }
 }

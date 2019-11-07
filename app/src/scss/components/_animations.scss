@@ -31,18 +31,32 @@
 	}
 }
 
-.slide-enter {
+// .slide-enter {
+	// .leftside {
+	//    	transform: translate3d(-100vw, 0, 0);
+	// }
+	// .rightside {
+	//    	transform: translate3d(100vw, 0, 0);
+	// }
+ //  &.slide-enter-active {
+	// 	.leftside, .rightside {
+ //   		transform:translate3d(0,0,0);
+ //   		transition: transform .5s ease .5s;
+	//   }
+	// }
+// }
+.wrapper {
 	.leftside {
 	   	transform: translate3d(-100vw, 0, 0);
 	}
 	.rightside {
 	   	transform: translate3d(100vw, 0, 0);
 	}
-   	&.slide-enter-active {
+	&.animate-me {
 		.leftside, .rightside {
-	   		transform:translate3d(0,0,0);
-	   		transition: transform .5s ease .5s;
-	   	}
+			transform:translate3d(0,0,0);
+			transition: transform .5s ease;
+	  }
 	}
 }
 .slide-exit, .slide-leave {
@@ -123,6 +137,9 @@
 	}
 	.white & {
 		background:$white;
+	}
+	&.inline-loader {
+		position:relative;
 	}
 }
 .loader {

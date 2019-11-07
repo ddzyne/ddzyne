@@ -6,9 +6,9 @@ for ( var i=1; i <= foodAmount; i++ ){
 	foodItems.push(i)
 }
 
-const PacmanLoader = () =>
-	<div className="loader-wrap">
-        <div className="loader">
+const PacmanLoader = (props) =>
+	<div className={"loader-wrap " + props.className}>
+    <div className="loader">
 			<div className="overlay" />
 			<div className="pacman pacman-real">
 				<div className="pacman-mask">
