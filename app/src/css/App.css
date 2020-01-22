@@ -3147,7 +3147,7 @@ td {
 p {
   margin-bottom: 1rem;
   font-size: inherit;
-  line-height: 1.4;
+  line-height: 1.5;
   text-rendering: optimizeLegibility; }
 
 em,
@@ -3259,7 +3259,7 @@ ol,
 dl {
   margin-bottom: 1rem;
   list-style-position: outside;
-  line-height: 1.4; }
+  line-height: 1.5; }
 
 li {
   font-size: inherit; }
@@ -3286,7 +3286,7 @@ blockquote {
   padding: 0.46875rem 1.04167rem 0 0.98958rem;
   border-left: 1px solid #cacaca; }
   blockquote, blockquote p {
-    line-height: 1.4;
+    line-height: 1.5;
     color: #8a8a8a; }
 
 abbr, abbr[title] {

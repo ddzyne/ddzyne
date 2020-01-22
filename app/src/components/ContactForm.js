@@ -86,9 +86,9 @@ export default class ContactForm extends Component {
       })
 	}
 	render() {
-		const nameState = cn({invalid: !this.state.nameValid && this.state.name.length > 0, valid: this.state.nameValid})
-		const emailState = cn({invalid: !this.state.emailValid && this.state.email.length > 0, valid: this.state.emailValid})
-		const messageState = cn({invalid: !this.state.messageValid && this.state.message.length > 0, valid: this.state.messageValid})
+		const nameState = cn({invalid: !this.state.nameValid && this.state.name.length > 0, valid: this.state.nameValid}),
+		      emailState = cn({invalid: !this.state.emailValid && this.state.email.length > 0, valid: this.state.emailValid}),
+		      messageState = cn({invalid: !this.state.messageValid && this.state.message.length > 0, valid: this.state.messageValid})
 		return (
 				<AnimatePresence exitBeforeEnter>
 					{ this.state.messageSent ?
