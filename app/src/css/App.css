@@ -4583,6 +4583,8 @@ a {
 
 #root {
   overflow: hidden; }
+  #root .main-wrapper {
+    min-height: 100vh; }
 
 .wrapper {
   width: 100%;
