@@ -4,30 +4,33 @@
   "private": true,
   "homepage": "https://www.ddzyne.nl/wp-content/themes/ddzyne-rest/build",
   "dependencies": {
-    "@team-griffin/react-router-connected": "^0.1.0",
+    "@team-griffin/react-router-connected": "^0.3.0",
     "classnames": "^2.2.5",
-    "foundation-sites": "^6.4.1",
+    "connected-react-router": "^6.6.1",
+    "foundation-sites": "^6.6.1",
+    "framer-motion": "^1.7.2",
     "lodash": "^4.17.4",
-    "react": "^15.6.1",
+    "react": "^16.12.0",
     "react-addons-css-transition-group": "^15.6.0",
-    "react-css-transition-replace": "^2.2.1",
-    "react-dom": "^15.6.1",
+    "react-css-transition-replace": "^4.0.2",
+    "react-dom": "^16.12.0",
     "react-helmet": "^5.1.3",
     "react-infinite-scroller": "^1.2.4",
-    "react-inlinesvg": "^0.6.2",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.2",
-    "react-router-redux": "next",
-    "react-scripts": "1.0.10",
-    "react-transition-group": "^2.2.0",
+    "react-inlinesvg": "^1.2.0",
+    "react-masonry-component": "^6.2.1",
+    "react-pose": "^4.0.10",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "react-router-redux": "4.0.8",
+    "react-scripts": "3.3.0",
+    "react-transition-group": "^4.3.0",
     "react-visibility-sensor": "^5.1.1",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "node-sass-chokidar": "0.0.2",
+    "node-sass-chokidar": "1.4.0",
     "npm-run-all": "^4.0.2",
-    "react-scripts": "1.0.10",
     "react-snapshot": "^1.2.0"
   },
   "scripts": {
@@ -38,5 +41,17 @@
     "build": "npm run build-css && react-scripts build && rm -rf ../build && mv build ../build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

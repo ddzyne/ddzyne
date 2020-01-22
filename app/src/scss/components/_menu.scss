@@ -31,6 +31,7 @@
 			display: inline-block;
 			margin-right:2rem;
 			transition: color .3s ease;
+			outline: none;
 			&:last-of-type {
 				margin-right:0;
 			}
@@ -53,11 +54,17 @@
 	}
 	#logo-header {
 		text-align: center;
+		position:relative;
+		display: flex;
 		@include xy-cell();
 		@include xy-gutters($gutter-position: left right);
 		@include breakpoint(large) {
 			@include xy-cell(7);
 			text-align: left;
+		}
+		@include breakpoint(medium down) {
+			margin-bottom: 0;
+			justify-content: center;
 		}
 		transition: opacity .3s ease;
 		a {
@@ -66,11 +73,14 @@
 		}
 		a, h1 {
 			display: inline-block;
-			font-size: 1.3rem;
+			font-size: 1.8rem;
+			line-height: 1.1;
 			font-family: 'AG', sans-serif;
 			text-transform: lowercase;
+			white-space: nowrap;
 			@include breakpoint(large) {
 				font-size: 1.8rem;
+				line-height: 1.5;
 			}
 		}
 		h1 {

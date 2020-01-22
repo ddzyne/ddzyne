@@ -3,8 +3,7 @@ import cn from 'classnames'
 import { Route, Switch } from 'react-router'
 import { Helmet } from "react-helmet"
 import MenuContainer from './MenuContainer'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import ReactCSSTransitionReplace from 'react-css-transition-replace'
+import { PoseGroup } from 'react-pose'
 
 import { connect } from 'react-redux'
 import { fetchMenuItems } from '../actions'
@@ -17,9 +16,10 @@ import Home from '../components/Home'
 import Footer from '../components/Footer'
 import NotFound from '../components/NotFound'
 import PacmanLoader from '../components/PacmanLoader'
+import {RouteContainer, FooterContainer, LoaderBox} from '../components/PosedAnims'
 
 class App extends Component {
-	componentWillMount() {
+	componentDidMount() {
         const { fetchMenuItems } = this.props
         fetchMenuItems()
 	}
@@ -46,39 +46,38 @@ class App extends Component {
 
             	<MenuContainer menu={menu} />
             	<div className="middle" id="content">
-            		<ReactCSSTransitionReplace 
-            			transitionName="slide" 
-                        transitionEnterTimeout={1000} 
-                        transitionLeaveTimeout={1000}
-                        overflowHidden={false}>
-		            	<Switch key={currentKey} location={location}>
-		            		<Route path="/" exact component={Home}/>
-			                {menu.map( (item, i) =>  
-			                	<Route 
-			                		key={i} 
-			                		path={`/${item.attr_title}`} 
-			                		render={ (props) => item.attr_title === 'werk' ? <WorkPageContainer {...props} /> : <PageContainer {...props} pageName={currentKey} /> }
-			                	/>
-			                )}
-			                <Route component={NotFound} />
-		            	</Switch>
-		            </ReactCSSTransitionReplace>
+            		<PoseGroup animateOnMount={true}>
+                        <RouteContainer key={currentKey}>
+    		            	<Switch location={location}>
+    		            		<Route path="/" exact component={Home}/>
+    			                {menu.map( (item, i) =>  
+    			                	<Route 
+    			                		key={i} 
+    			                		path={`/${item.attr_title}`} 
+    			                		render={ (props) => item.attr_title === 'werk' ? <WorkPageContainer {...props} /> : <PageContainer {...props} pageName={currentKey} /> }
+    			                	/>
+    			                )}
+    			                <Route component={NotFound} />
+    		            	</Switch>
+                        </RouteContainer>
+		            </PoseGroup>
 	            </div>
-	            <ReactCSSTransitionReplace 
-            			transitionName="slideDown" 
-                        transitionEnterTimeout={1200} 
-                        transitionLeaveTimeout={500}
-                        overflowHidden={false}>
-	           		<Footer key={currentKey}/>
-	           	</ReactCSSTransitionReplace>
-            	
-                <TransitionGroup>
-            		{ loading &&
-	            	<CSSTransition timeout={1100} classNames="fade" unmountOnExit={true}>
-	            		<PacmanLoader/>
-	            	</CSSTransition>
-		            }
-	           </TransitionGroup>
+
+                <PoseGroup>
+                    {!loading && 
+                        <FooterContainer key={currentKey}>
+                            <Footer />
+                        </FooterContainer>
+                    }
+                </PoseGroup>
+
+                <PoseGroup>
+                    {loading && 
+                        <LoaderBox key="pacman" className="loader-wrap">
+                            <PacmanLoader />
+                        </LoaderBox>
+                    }
+                </PoseGroup>
 
             </div>
 		)

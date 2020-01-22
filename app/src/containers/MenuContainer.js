@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { DEFAULT_PAGE } from '../reducers/pages'
 import cn from 'classnames'
-import ReactCSSTransitionReplace from 'react-css-transition-replace'
+import { PoseGroup } from 'react-pose'
+import {PosedHeader} from '../components/PosedAnims'
 
 class MenuContainer extends Component {
     render() {
@@ -16,17 +17,13 @@ class MenuContainer extends Component {
             <div className="wrapper menu">
                 <div className={itemClass} id="logo-header">
                     <Link to="/" rel="home">Ddzyne</Link>
-                    <ReactCSSTransitionReplace
-                        transitionName="fadeTitle" 
-                        transitionEnterTimeout={500} 
-                        transitionLeaveTimeout={500}
-                        overflowHidden={false}>
-                        <h1 id="title" key={currentPage}>{pageTitle}</h1>
-                    </ReactCSSTransitionReplace>
+                    <PoseGroup>
+                        <PosedHeader id="title" key={currentPage}>{pageTitle}</PosedHeader>
+                    </PoseGroup>
                 </div>
                 <nav className="item">
                     {menu.map( 
-                        (item, i) => <Link key={i} to={`/${item.attr_title}`} className={item.attr_title === currentPage && 'active'}>{item.title}</Link> 
+                        (item, i) => <Link key={i} to={`/${item.attr_title}`} className={item.attr_title === currentPage ? 'active' : undefined}>{item.title}</Link> 
                     )}
                 </nav>
             </div>

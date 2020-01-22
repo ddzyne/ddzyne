@@ -69,3 +69,83 @@ function title_box() {
 		'type' => 'text',
 	) );
 }
+
+
+add_action( 'cmb2_init', 'about_page_social' );
+function about_page_social() {
+	$prefix = 'about_social_';
+	$cmb = new_cmb2_box( array(
+		'id'           => $prefix . 'metabox',
+		'title'        => esc_html__( 'Social links', 'cmb2' ),
+		'object_types' => array( 'page' ),
+		'show_on'      => array( 'key' => 'page-template', 'value' => 'wp-library/over-template.php' ),
+		'context'      => 'normal',
+		'priority'     => 'high',
+		'show_names'   => true,
+		'show_in_rest' => WP_REST_Server::READABLE,
+	) );
+
+	$group_field_id = $cmb->add_field( array(
+		'id'          => $prefix . 'group',
+		'type'        => 'group',
+		'options'     => array(
+			'group_title'   => esc_html__( 'Veld {#}', 'cmb2' ),
+			'add_button'    => esc_html__( 'Voeg nog een veld toe', 'cmb2' ),
+			'remove_button' => esc_html__( 'Verwijder veld', 'cmb2' ),
+			'sortable'      => true,
+			'closed'        => false,
+		),
+	) );
+	$cmb->add_group_field( $group_field_id, array(
+		'name'       => esc_html__( 'Titel', 'cmb2' ),
+		'id'         => 'title',
+		'type'       => 'text',
+	) );
+	$cmb->add_group_field( $group_field_id, array(
+		'name'       => esc_html__( 'Icoon font awesome', 'cmb2' ),
+		'id'         => 'icon',
+		'type'       => 'text',
+	) );
+	$cmb->add_group_field( $group_field_id, array(
+		'name'       => esc_html__( 'Link', 'cmb2' ),
+		'id'         => 'url',
+		'type'       => 'text_url',
+	) );
+}
+
+add_action( 'cmb2_init', 'about_page_clients' );
+function about_page_clients() {
+	$prefix = 'about_clients_';
+	$cmb = new_cmb2_box( array(
+		'id'           => $prefix . 'metabox',
+		'title'        => esc_html__( 'Klanten', 'cmb2' ),
+		'object_types' => array( 'page' ),
+		'show_on'      => array( 'key' => 'page-template', 'value' => 'wp-library/over-template.php' ),
+		'context'      => 'normal',
+		'priority'     => 'high',
+		'show_names'   => true,
+		'show_in_rest' => WP_REST_Server::READABLE,
+	) );
+
+	$group_field_id = $cmb->add_field( array(
+		'id'          => $prefix . 'group',
+		'type'        => 'group',
+		'options'     => array(
+			'group_title'   => esc_html__( 'Veld {#}', 'cmb2' ),
+			'add_button'    => esc_html__( 'Voeg nog een veld toe', 'cmb2' ),
+			'remove_button' => esc_html__( 'Verwijder veld', 'cmb2' ),
+			'sortable'      => true,
+			'closed'        => false,
+		),
+	) );
+	$cmb->add_group_field( $group_field_id, array(
+		'name'       => esc_html__( 'Titel', 'cmb2' ),
+		'id'         => 'title',
+		'type'       => 'text',
+	) );
+	$cmb->add_group_field( $group_field_id, array(
+		'name'       => esc_html__( 'Logo', 'cmb2' ),
+		'id'         => 'logo',
+		'type'       => 'file',
+	) );
+}

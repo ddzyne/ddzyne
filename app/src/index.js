@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import { render } from 'react-snapshot'
 import './css/App.css'
 import registerServiceWorker from './registerServiceWorker'
 
 import { Provider } from 'react-redux'
 import store, { history } from './store/configureStore'
-import { ConnectedRouter } from 'react-router-redux'
+import { ConnectedRouter } from 'connected-react-router'
 
 import App from './containers/App'
 

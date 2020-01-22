@@ -18,7 +18,13 @@ let defaultPage = {
         },
         titel_metabox: {
             titel_project: ''
-        }
+        },
+        about_social_metabox: {
+            about_clients_group: [],
+        },
+        about_clients_metabox: {
+            about_clients_metabox: [],
+        },
     }
 };
 

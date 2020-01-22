@@ -8,6 +8,7 @@ import { DEFAULT_CUSTOM_POST } from '../reducers/customposts'
 import { DEFAULT_POST_TAGS } from '../reducers/posttags'
 import InfiniteScroll from 'react-infinite-scroller'
 import PacmanLoader from '../components/PacmanLoader'
+import {ListContainer} from '../components/PosedAnims'
 
 // Smart component
 class WorkPageContainer extends Component {
@@ -15,13 +16,16 @@ class WorkPageContainer extends Component {
         super(props)
         this.loadMore = this.loadMore.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         const { fetchPageIfNeeded, fetchPostTagsIfNeeded, pageName } = this.props
         fetchPostTagsIfNeeded()
         fetchPageIfNeeded(pageName)
     }
     shouldComponentUpdate(nextProps) {
-        return nextProps.customposts.posts[0].hasOwnProperty('id') && nextProps.page.hasOwnProperty('id') && nextProps.posttags[0].hasOwnProperty('link') && nextProps.customposts.posts.length > this.props.customposts.posts.length
+        return ( nextProps.posttags.length > this.props.posttags.length
+            || nextProps.customposts.posts.length > this.props.customposts.posts.length )
+            && nextProps.posttags.length > 1
+            && nextProps.customposts.posts.length > 1
     }
     loadMore() {
         this.props.setLoadMore(true)
@@ -36,10 +40,12 @@ class WorkPageContainer extends Component {
                     pageStart={0}
                     loadMore={this.loadMore}
                     hasMore={!customposts.gotAll && !loadingMoreCustomPosts}
-                    loader={<PacmanLoader key={0} className="inline-loader"/>}>
-                    {customposts.posts.map( (post, i) => 
-                        <WorkColContent key={i} post={post} number={i} posttags={posttags} />
-                    )}
+                    loader={<div/>}>
+                    <ListContainer>
+                        {customposts.posts.map( (post, i) => 
+                            <WorkColContent key={i} post={post} number={i} posttags={posttags} />
+                        )}
+                    </ListContainer>
                 </InfiniteScroll>
             </div>
         )

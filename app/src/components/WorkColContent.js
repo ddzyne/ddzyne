@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import cn from 'classnames'
 import _ from 'lodash'
-import VisibilitySensor from 'react-visibility-sensor'
+import {PosedDivLeft, PosedDivRight} from './PosedAnims'
 
 // Dumb component
 export default class WorkColContent extends Component {
@@ -26,15 +25,24 @@ export default class WorkColContent extends Component {
         const { post, number, posttags } = this.props
 
         return (
-            <VisibilitySensor 
-                onChange={this.onChangeVisibility} 
-                active={!this.state.visible}
-                partialVisibility={true}>
-                <div className={`wrapper ${this.state.visible ? 'animate-me' : ''}`}>
-    				<Bubble post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-1 leftside' : 'large-order-2 rightside'} posttags={posttags}/>	
-    				<Images post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-2 rightside' : 'large-order-1 leftside'}/>  
+            number % 2 === 0 ?
+                <div className="wrapper work-item">
+                    <PosedDivLeft className="item large-order-1">
+    				    <Bubble post={post} createMarkup={this.createMarkup} posttags={posttags}/>	
+                    </PosedDivLeft>
+                    <PosedDivRight className="item rounded large-order-2" >
+    				    <Images post={post} createMarkup={this.createMarkup}/>  
+                    </PosedDivRight>
                 </div>
-            </VisibilitySensor>
+                :
+                <div className="wrapper work-item">
+                    <PosedDivLeft className="item rounded large-order-1">
+                        <Images post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-2' : 'large-order-1'}/>  
+                    </PosedDivLeft>
+                    <PosedDivRight className="item large-order-2">
+                        <Bubble post={post} createMarkup={this.createMarkup} className={number % 2 === 0 ? 'large-order-1' : 'large-order-2'} posttags={posttags}/>  
+                    </PosedDivRight>
+                </div>   
         );
     }
 }
@@ -52,19 +60,16 @@ class Bubble extends Component {
     }
     render() {
         const { post, createMarkup } = this.props
-        const className = cn('item', this.props.className)
         return (
-            <div className={className}>
-                <div className="bubble">
-                    <h6>Voor wie?</h6>
-                    <p dangerouslySetInnerHTML={createMarkup(post.cmb2.extra_metabox.extra_klant)} />
-                    <h6>Wat?</h6>
-                    <p dangerouslySetInnerHTML={createMarkup(post.cmb2.extra_metabox.extra_project)} />
-                    <h6>Vertel eens wat meer?</h6>
-                    <div dangerouslySetInnerHTML={createMarkup(post.content.rendered)} />
-                    <h6>Waarmee?</h6>
-                    <div className="tags">{post.tags.map( (tag,i) => <span key={i}>{this.findTag(tag)}</span>)}</div>
-                </div>
+            <div className="bubble">
+                <h6>Voor wie?</h6>
+                <p dangerouslySetInnerHTML={createMarkup(post.cmb2.extra_metabox.extra_klant)} />
+                <h6>Wat?</h6>
+                <p dangerouslySetInnerHTML={createMarkup(post.cmb2.extra_metabox.extra_project)} />
+                <h6>Vertel eens wat meer?</h6>
+                <div dangerouslySetInnerHTML={createMarkup(post.content.rendered)} />
+                <h6>Waarmee?</h6>
+                <div className="tags">{post.tags.map( (tag,i) => <span key={i}>{this.findTag(tag)}</span>)}</div>
             </div>
         )
     }
@@ -73,12 +78,8 @@ class Bubble extends Component {
 class Images extends Component {
     render() {
         const { post, createMarkup } = this.props
-        const className = cn('item', 'rounded', this.props.className)
-
         return (
-            <div className={className}>
-                <div dangerouslySetInnerHTML={createMarkup(post.cmb2.column_metabox.column_content)} />                    
-            </div>
+            <div dangerouslySetInnerHTML={createMarkup(post.cmb2.column_metabox.column_content)} />                    
         )
     }
 }

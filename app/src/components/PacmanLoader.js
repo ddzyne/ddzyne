@@ -7,7 +7,6 @@ for ( var i=1; i <= foodAmount; i++ ){
 }
 
 const PacmanLoader = (props) =>
-	<div className={"loader-wrap " + props.className}>
     <div className="loader">
 			<div className="overlay" />
 			<div className="pacman pacman-real">
@@ -22,6 +21,5 @@ const PacmanLoader = (props) =>
 			</div>
 			{ foodItems.map( (item)=> <div key={item} className={`food food-${item}`} /> ) }
 		</div>
-	</div>
 
 export default PacmanLoader

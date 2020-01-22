@@ -1,30 +1,32 @@
 #root {
 	overflow:hidden;
 	.main-wrapper {
-		min-height: 100vh;
-		//prevent flash of content
-		.wrapper.menu, .middle, .footer {
-			transition: opacity .3s ease;
-		}
-		&.loading {
-			.wrapper.menu, .middle, .footer {
-				opacity: 0;
-				// transition: opacity .3s ease .3s;
-			}
-		}
+		// //prevent flash of content
+		// .wrapper.menu, .middle, .footer {
+		// 	transition: opacity .3s ease;
+		// }
+		// &.loading {
+		// 	.wrapper.menu, .middle, .footer {
+		// 		opacity: 0;
+		// 		// transition: opacity .3s ease .3s;
+		// 	}
+		// }
 	}
 }
 
 .wrapper {
 	width:100%;
-	overflow:visible;
+	overflow:hidden;
 	@include xy-grid-container;
 	@include xy-grid;
 	.item {
 		@include xy-gutters($gutter-position: left right bottom top);
 		@include xy-cell(12);
 		@include breakpoint(large) {
-		    @include xy-cell(6);
+		   @include xy-cell(6);
+		}
+		@include breakpoint(xxlarge) {
+			margin-bottom: 0;
 		}
 	}
 	&.home {
@@ -36,6 +38,49 @@
 	}
 	&.middle {
 	}
+}
+
+.clients {
+	margin-top:1rem;
+}
+.client-list {
+	margin:0 -3%;
+	img {
+		margin:2% 3%;
+		width: 27%;
+		max-height: 7rem;
+		display: block;
+		height: auto;
+		opacity: .5;
+		&.uvalogo {
+			width:60%;
+		}
+		@include breakpoint(xlarge) {
+			width: 19%;
+			&.uvalogo {
+				width:44%;
+			}
+		}
+		svg {
+			display: block;
+			max-height: 7rem;
+		}
+		.main-wrapper.white & {
+			path {
+				fill:$black !important;
+			}
+			g {
+				path, rect {
+					fill:$black !important;
+				}
+			}
+		}
+	}
+
+}
+
+.footer-wrap {
+	overflow: hidden;
 }
 
 .footer {
