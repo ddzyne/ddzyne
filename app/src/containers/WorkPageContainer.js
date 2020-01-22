@@ -7,8 +7,6 @@ import { DEFAULT_PAGE } from '../reducers/pages'
 import { DEFAULT_CUSTOM_POST } from '../reducers/customposts'
 import { DEFAULT_POST_TAGS } from '../reducers/posttags'
 import InfiniteScroll from 'react-infinite-scroller'
-import PacmanLoader from '../components/PacmanLoader'
-import {ListContainer} from '../components/PosedAnims'
 
 // Smart component
 class WorkPageContainer extends Component {
@@ -40,12 +38,10 @@ class WorkPageContainer extends Component {
                     pageStart={0}
                     loadMore={this.loadMore}
                     hasMore={!customposts.gotAll && !loadingMoreCustomPosts}
-                    loader={<div/>}>
-                    <ListContainer>
-                        {customposts.posts.map( (post, i) => 
-                            <WorkColContent key={i} post={post} number={i} posttags={posttags} />
-                        )}
-                    </ListContainer>
+                    loader={<span key="load-scroll"/>}>
+                    {customposts.posts.map( (post, i) => 
+                        <WorkColContent key={i} post={post} number={i} posttags={posttags} />
+                    )}
                 </InfiniteScroll>
             </div>
         )

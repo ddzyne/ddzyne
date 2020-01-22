@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import ContactForm from './ContactForm'
 import _ from 'lodash'
 import Masonry from 'react-masonry-component'
-import {PosedDivLeft, PosedDivRight} from './PosedAnims'
+import {SlideInLeft, SlideInRight} from './Anims'
 
 const masonryOptions = {
-    transitionDuration: 500,
+    transitionDuration: 300,
     horizontalOrder: false,
 }
 
 export default class TwoColContent extends Component {
-    constructor(props) {
-        super(props)
-    }
     createMarkup(html) {
         return {
             __html: html
@@ -22,7 +19,7 @@ export default class TwoColContent extends Component {
         const { page, background } = this.props
         return (
             <div className="wrapper">
-                <PosedDivLeft className="item leftside">
+                <SlideInLeft className="item leftside">
 					<div className="bubble">
                         <div dangerouslySetInnerHTML={this.createMarkup(page.content.rendered)} />
                         {!_.isEmpty(page.cmb2.about_social_metabox.about_social_group) && 
@@ -39,14 +36,14 @@ export default class TwoColContent extends Component {
                              </div>
                         }
                     </div>	
-				</PosedDivLeft>
-				<PosedDivRight className="item rounded rightside">
+				</SlideInLeft>
+				<SlideInRight className="item rounded rightside">
                     {page.slug === 'contact' ?
                         <ContactForm /> 
                     :
 					   <div dangerouslySetInnerHTML={this.createMarkup(page.cmb2.column_metabox.column_content)} />					
                     }
-				</PosedDivRight>
+				</SlideInRight>
             </div>
         );
     }

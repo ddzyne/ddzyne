@@ -6,8 +6,18 @@
 		}
 	}
 	input[type="text"], input[type="email"] {
+		transition:all .3s ease;
 		@include breakpoint(medium) {
 			width:60%;
+		}
+		&:disabled {
+			opacity: .7;
+		}
+	}
+	textarea {
+		transition:all .3s ease;
+		&:disabled {
+			opacity: .7;
 		}
 	}
 	input[type="submit"] {

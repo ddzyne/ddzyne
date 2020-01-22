@@ -4465,7 +4465,8 @@ a {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  justify-content: flex-end; }
   @media print, screen and (min-width: 40em) {
     .wrapper.menu {
       padding-right: 0.78125rem;
@@ -4474,15 +4475,11 @@ a {
     .wrapper.menu {
       padding-right: 2.08333rem;
       padding-left: 2.08333rem; } }
-  @media print, screen and (max-width: 63.99875em) {
-    .wrapper.menu .hidden {
-      max-height: 0;
-      margin: 0;
-      visibility: hidden; } }
   @media print, screen and (min-width: 64em) {
-    .wrapper.menu .hidden {
-      visibility: hidden;
-      opacity: 0; } }
+    .wrapper.menu .item {
+      height: 2.8rem;
+      display: flex;
+      align-items: center; } }
   .wrapper.menu nav {
     text-align: center;
     font-family: "Gloria Hallelujah", cursive;
@@ -5177,9 +5174,17 @@ a {
     font-family: "Gloria Hallelujah", cursive; }
     .white .form label {
       color: #8a8a8a; }
-  @media print, screen and (min-width: 40em) {
-    .form input[type="text"], .form input[type="email"] {
-      width: 60%; } }
+  .form input[type="text"], .form input[type="email"] {
+    transition: all .3s ease; }
+    @media print, screen and (min-width: 40em) {
+      .form input[type="text"], .form input[type="email"] {
+        width: 60%; } }
+    .form input[type="text"]:disabled, .form input[type="email"]:disabled {
+      opacity: .7; }
+  .form textarea {
+    transition: all .3s ease; }
+    .form textarea:disabled {
+      opacity: .7; }
   .form input[type="submit"] {
     font-family: "Gloria Hallelujah", cursive; }
     .pink .form input[type="submit"], .pink .form input[type="submit"].disabled, .pink .form input[type="submit"][disabled], .pink .form input[type="submit"].disabled:hover, .pink .form input[type="submit"][disabled]:hover, .pink .form input[type="submit"].disabled:focus, .pink .form input[type="submit"][disabled]:focus {
