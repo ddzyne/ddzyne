@@ -120,7 +120,7 @@ function about_page_clients() {
 		'id'           => $prefix . 'metabox',
 		'title'        => esc_html__( 'Klanten', 'cmb2' ),
 		'object_types' => array( 'page' ),
-		'show_on'      => array( 'key' => 'page-template', 'value' => 'wp-library/over-template.php' ),
+		'show_on'      => array( 'key' => 'page-template', 'value' => 'over-template.php' ),
 		'context'      => 'normal',
 		'priority'     => 'high',
 		'show_names'   => true,
