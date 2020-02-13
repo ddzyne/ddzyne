@@ -78,7 +78,7 @@ function about_page_social() {
 		'id'           => $prefix . 'metabox',
 		'title'        => esc_html__( 'Social links', 'cmb2' ),
 		'object_types' => array( 'page' ),
-		'show_on'      => array( 'key' => 'page-template', 'value' => 'wp-library/over-template.php' ),
+		'show_on'      => array( 'key' => 'page-template', 'value' => 'over-template.php' ),
 		'context'      => 'normal',
 		'priority'     => 'high',
 		'show_names'   => true,
