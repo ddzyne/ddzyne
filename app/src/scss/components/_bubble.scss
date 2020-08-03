@@ -100,6 +100,11 @@
         }
       }
     }
+    &.multi-2 {
+      float:left;
+      max-width: 48%;
+    }
+}
   }
   p.image, p:last-of-type {
     margin-bottom: 0;
